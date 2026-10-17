@@ -51,6 +51,12 @@ export const envData: EnvData = {
     trustedProxies: [],
   },
 
+  machineLearning: {
+    searchUrls: [],
+    requestTimeout: 300_000,
+    searchTimeout: 30_000,
+  },
+
   otel: {
     metrics: {
       hostMetrics: false,

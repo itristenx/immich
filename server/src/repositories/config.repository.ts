@@ -80,6 +80,12 @@ export interface EnvData {
     trustedProxies: string[];
   };
 
+  machineLearning: {
+    searchUrls: string[];
+    requestTimeout: number;
+    searchTimeout: number;
+  };
+
   otel: OpenTelemetryModuleOptions;
 
   resourcePaths: {
@@ -321,6 +327,12 @@ const getEnv = (): EnvData => {
 
     network: {
       trustedProxies: dto.IMMICH_TRUSTED_PROXIES ?? ['linklocal', 'uniquelocal'],
+    },
+
+    machineLearning: {
+      searchUrls: dto.IMMICH_MACHINE_LEARNING_SEARCH_URLS,
+      requestTimeout: dto.IMMICH_MACHINE_LEARNING_REQUEST_TIMEOUT ?? 300_000,
+      searchTimeout: dto.IMMICH_MACHINE_LEARNING_SEARCH_TIMEOUT ?? 30_000,
     },
 
     otel: {

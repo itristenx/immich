@@ -622,7 +622,9 @@ const newMockRepository = <T>(key: ClassConstructor<T>) => {
     }
 
     case MachineLearningRepository: {
-      return automock(MachineLearningRepository, { args: [{ setContext: () => {} }] });
+      return automock(MachineLearningRepository, {
+        args: [{ setContext: () => {} }, { getEnv: () => mockEnvData({}) }],
+      });
     }
 
     case StorageRepository: {

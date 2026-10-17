@@ -59,6 +59,24 @@ Adding a new URL to the settings is recommended over replacing the existing URL 
 
 Do note that this will mean that Smart Search and Face Detection jobs will fail to be processed when the remote instance is not available. This in turn means that tasks dependent on these features—Duplicate Detection and Facial Recognition—will not run for affected assets. If this occurs, you must manually click the _Missing_ button next to Smart Search and Face Detection in the [Job Status](http://my.immich.app/admin/queues) page for the jobs to be retried.
 
+## Dedicated interactive search
+
+This fork supports separate endpoints for interactive text encoding. This requires a server image built from the fork; the upstream server image does not include these options.
+
+Run an additional copy of the ML service with a different service name or on a separate machine, keeping its version and model revision compatible with the existing service. Add the following environment variables to the **server** service, adjusting the URL to match that additional service:
+
+```dotenv
+IMMICH_MACHINE_LEARNING_SEARCH_URLS=http://immich-machine-learning-search:3003
+IMMICH_MACHINE_LEARNING_SEARCH_TIMEOUT=30000
+IMMICH_MACHINE_LEARNING_REQUEST_TIMEOUT=300000
+```
+
+Keep the shared/background services in the administration settings. Do not add the dedicated service there unless you also want it to receive background jobs. Interactive text encoding prefers healthy dedicated services and falls back to the configured shared services. Image encoding, face detection, and OCR continue to use only the shared services.
+
+On the dedicated ML service, set `MACHINE_LEARNING_PRELOAD__CLIP__TEXTUAL` to the exact Smart Search model name configured in Immich. This avoids loading the textual model on the first search. Preloading must fit within the available memory. These endpoints serve Immich's ML API; an Ollama endpoint cannot be used here.
+
+The deadlines apply to individual attempts, including response-body reading. Increase them when cold model downloads or compilation need longer. Aborting the client request does not guarantee cancellation of inference in the ML service. See [environment variables](/install/environment-variables#machine-learning) for details.
+
 ## Load balancing
 
 While several URLs can be provided in the settings, they are tried sequentially; there is no attempt to distribute load across multiple containers. It is recommended to use a dedicated load balancer for such use-cases and specify it as the only URL. Among other things, it may enable the use of different APIs on the same server by running multiple containers with different configurations. For example, one might run an OpenVINO container in addition to a CUDA container, or run a standard release container to maximize both CPU and GPU utilization.

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Duration } from 'luxon';
 import { readFile } from 'node:fs/promises';
 import { MachineLearningConfig } from 'src/dtos/config.dto.js';
+import { ConfigRepository, EnvData } from 'src/repositories/config.repository.js';
 import { LoggingRepository } from 'src/repositories/logging.repository.js';
 
 export interface BoundingBox {
@@ -80,6 +81,7 @@ export class MachineLearningRepository {
   private healthyMap: Record<string, boolean> = {};
   private interval?: ReturnType<typeof setInterval>;
   private _config?: MachineLearningConfig;
+  private readonly options: EnvData['machineLearning'];
 
   private get config(): MachineLearningConfig {
     if (!this._config) {
@@ -89,8 +91,16 @@ export class MachineLearningRepository {
     return this._config;
   }
 
-  constructor(private logger: LoggingRepository) {
+  constructor(
+    private logger: LoggingRepository,
+    configRepository: ConfigRepository,
+  ) {
     this.logger.setContext(MachineLearningRepository.name);
+    this.options = configRepository.getEnv().machineLearning;
+  }
+
+  private get urls(): string[] {
+    return [...new Set([...this.options.searchUrls, ...this.config.urls])];
   }
 
   setup(config: MachineLearningConfig) {
@@ -99,7 +109,7 @@ export class MachineLearningRepository {
 
     // delete old servers
     for (const url of Object.keys(this.healthyMap)) {
-      if (!config.urls.includes(url)) {
+      if (!this.urls.includes(url)) {
         delete this.healthyMap[url];
       }
     }
@@ -116,13 +126,15 @@ export class MachineLearningRepository {
   }
 
   teardown() {
-    if (this.interval) {
-      clearInterval(this.interval);
+    if (!this.interval) {
+      return;
     }
+    clearInterval(this.interval);
+    this.interval = undefined;
   }
 
   private tick() {
-    for (const url of this.config.urls) {
+    for (const url of this.urls) {
       void this.check(url);
     }
   }
@@ -161,24 +173,38 @@ export class MachineLearningRepository {
 
   private async predict<T>(payload: ModelPayload, config: MachineLearningRequest): Promise<T> {
     const formData = await this.getFormData(payload, config);
+    const isSearch = 'text' in payload;
+    const urls = isSearch ? this.urls : [...new Set(this.config.urls)];
+    const timeoutMs = isSearch ? this.options.searchTimeout : this.options.requestTimeout;
 
     for (const url of [
       // try healthy servers first
-      ...this.config.urls.filter((url) => this.isHealthy(url)),
-      ...this.config.urls.filter((url) => !this.isHealthy(url)),
+      ...urls.filter((url) => this.isHealthy(url)),
+      ...urls.filter((url) => !this.isHealthy(url)),
     ]) {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(new Error('Machine learning request timed out')), timeoutMs);
+      timeout.unref();
       try {
-        const response = await fetch(new URL('predict', url), { method: 'POST', body: formData });
+        const response = await fetch(new URL('predict', url), {
+          method: 'POST',
+          body: formData,
+          signal: controller.signal,
+        });
         if (response.ok) {
+          const result = await response.json();
           this.setHealthy(url, true);
-          return response.json();
+          return result;
         }
 
+        await response.body?.cancel();
         this.logger.warn(
           `Machine learning request to "${url}" failed with status ${response.status}: ${response.statusText}`,
         );
       } catch (error: Error | unknown) {
         this.logger.warn(`Machine learning request to "${url}" failed`, error);
+      } finally {
+        clearTimeout(timeout);
       }
 
       this.setHealthy(url, false);

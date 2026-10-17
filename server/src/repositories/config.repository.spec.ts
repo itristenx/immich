@@ -14,6 +14,9 @@ const resetEnv = () => {
     'IMMICH_WORKERS_INCLUDE',
     'IMMICH_WORKERS_EXCLUDE',
     'IMMICH_TRUSTED_PROXIES',
+    'IMMICH_MACHINE_LEARNING_SEARCH_URLS',
+    'IMMICH_MACHINE_LEARNING_REQUEST_TIMEOUT',
+    'IMMICH_MACHINE_LEARNING_SEARCH_TIMEOUT',
     'IMMICH_API_METRICS_PORT',
     'IMMICH_MEDIA_LOCATION',
     'IMMICH_MICROSERVICES_METRICS_PORT',
@@ -280,6 +283,51 @@ describe('getEnv', () => {
       process.env.IMMICH_TRUSTED_PROXIES = '10.1';
       expect(() => getEnv()).toThrow('[IMMICH_TRUSTED_PROXIES] Must be an ip address or ip address range');
     });
+  });
+
+  describe('machine learning', () => {
+    it('should default to shared endpoints with separate search and background deadlines', () => {
+      expect(getEnv().machineLearning).toEqual({
+        searchUrls: [],
+        requestTimeout: 300_000,
+        searchTimeout: 30_000,
+      });
+    });
+
+    it('should parse and deduplicate dedicated search URLs', () => {
+      process.env.IMMICH_MACHINE_LEARNING_SEARCH_URLS = ' http://search:3003 , https://backup:3003,http://search:3003 ';
+
+      expect(getEnv().machineLearning.searchUrls).toEqual(['http://search:3003', 'https://backup:3003']);
+    });
+
+    it('should allow an empty search URL override', () => {
+      process.env.IMMICH_MACHINE_LEARNING_SEARCH_URLS = '';
+
+      expect(getEnv().machineLearning.searchUrls).toEqual([]);
+    });
+
+    it.each(['ftp://search:3003', 'search:3003', '/search'])('should reject invalid search URL %s', (url) => {
+      process.env.IMMICH_MACHINE_LEARNING_SEARCH_URLS = url;
+
+      expect(getEnv).toThrow('IMMICH_MACHINE_LEARNING_SEARCH_URLS');
+    });
+
+    it('should parse custom request deadlines', () => {
+      process.env.IMMICH_MACHINE_LEARNING_REQUEST_TIMEOUT = '900000';
+      process.env.IMMICH_MACHINE_LEARNING_SEARCH_TIMEOUT = '60000';
+
+      expect(getEnv().machineLearning).toMatchObject({ requestTimeout: 900_000, searchTimeout: 60_000 });
+    });
+
+    it.each(['IMMICH_MACHINE_LEARNING_REQUEST_TIMEOUT', 'IMMICH_MACHINE_LEARNING_SEARCH_TIMEOUT'])(
+      'should reject invalid %s values',
+      (key) => {
+        for (const value of ['0', '-1', '1.5', 'NaN', '2147483648']) {
+          process.env[key] = value;
+          expect(getEnv).toThrow(key);
+        }
+      },
+    );
   });
 
   describe('telemetry', () => {

@@ -19,6 +19,19 @@ const absolutePath = z.string().regex(/^\//, 'Must be an absolute path').optiona
  * @docs https://zod.dev/api?id=stringbool
  */
 const stringBool = z.stringbool();
+const requestTimeout = z.coerce.number().int().min(1).max(2_147_483_647).optional();
+const machineLearningSearchUrls = z
+  .string()
+  .optional()
+  .transform((value) => [
+    ...new Set(
+      (value ?? '')
+        .split(',')
+        .map((url) => url.trim())
+        .filter(Boolean),
+    ),
+  ])
+  .pipe(z.array(z.url({ protocol: /^https?$/ })));
 
 const trustedProxiesSchema = z
   .string()
@@ -49,6 +62,9 @@ export const EnvSchema = z
     IMMICH_IGNORE_MOUNT_CHECK_ERRORS: stringBool.optional(),
     IMMICH_LOG_LEVEL: LogLevelSchema.optional(),
     IMMICH_LOG_FORMAT: LogFormatSchema.optional(),
+    IMMICH_MACHINE_LEARNING_SEARCH_URLS: machineLearningSearchUrls,
+    IMMICH_MACHINE_LEARNING_REQUEST_TIMEOUT: requestTimeout,
+    IMMICH_MACHINE_LEARNING_SEARCH_TIMEOUT: requestTimeout,
     IMMICH_MEDIA_LOCATION: absolutePath,
     IMMICH_MICROSERVICES_METRICS_PORT: z.coerce.number().int().optional(),
     IMMICH_ALLOW_EXTERNAL_PLUGINS: stringBool.optional(),

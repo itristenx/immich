@@ -154,6 +154,22 @@ Redis (Sentinel) URL example JSON before encoding:
 
 ## Machine Learning
 
+The following variables configure requests from the **server** to machine learning services:
+
+| Variable | Description | Default | Containers |
+| :------- | :---------- | :-----: | :--------- |
+| `IMMICH_MACHINE_LEARNING_SEARCH_URLS` | Comma-separated ML service URLs preferred for interactive text encoding. Background image encoding, face detection and OCR continue using the URLs configured in the administration settings. | | server |
+| `IMMICH_MACHINE_LEARNING_SEARCH_TIMEOUT` | Maximum time in milliseconds for each interactive text encoding request, including reading its response body. | `30000` | server |
+| `IMMICH_MACHINE_LEARNING_REQUEST_TIMEOUT` | Maximum time in milliseconds for each background prediction request, including reading its response body. | `300000` | server |
+
+When dedicated search URLs are configured, healthy dedicated services are tried before healthy shared services. Shared services remain a fallback if dedicated services fail. Each distinct URL is tried at most once per prediction. The timeout applies separately to each attempt, so failover can increase the total request duration. Availability checks cover both endpoint lists when enabled.
+
+Aborting a request limits how long the server waits; it does not guarantee that the ML service stops inference already in progress. A timeout followed by failover may therefore temporarily use capacity on more than one service.
+
+These URLs must serve Immich's machine learning API with the same model configuration and compatible version as the other services. They cannot point directly to Ollama or a Gemma server. To isolate interactive search, run a separate ML service and preload its configured textual model. Additional replicas on the same constrained machine still compete for memory and CPU; isolation is most useful when capacity is available or services run on separate machines. Increase the timeouts if first-use model downloads or compilation need longer.
+
+The remaining variables configure the **machine learning** service itself:
+
 | Variable                                                    | Description                                                                                         |           Default           | Containers       |
 | :---------------------------------------------------------- | :-------------------------------------------------------------------------------------------------- | :-------------------------: | :--------------- |
 | `MACHINE_LEARNING_MODEL_TTL`                                | Inactivity time (s) before a model is unloaded (disabled if \<= 0)                                  |            `300`            | machine learning |
