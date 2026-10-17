@@ -1,0 +1,852 @@
+{
+  "application_models": [
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "RN101__openai",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "RN101__yfcc15m",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "RN50__cc12m",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "RN50__openai",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "RN50__yfcc15m",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "RN50x16__openai",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 640,
+      "id": "RN50x4__openai",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "RN50x64__openai",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-B-16-SigLIP-256__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain efficient alternatives; compare quality and memory against SigLIP 2.",
+      "review_group": "siglip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-B-16-SigLIP-384__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain efficient alternatives; compare quality and memory against SigLIP 2.",
+      "review_group": "siglip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-B-16-SigLIP-512__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain efficient alternatives; compare quality and memory against SigLIP 2.",
+      "review_group": "siglip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-B-16-SigLIP-i18n-256__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain efficient alternatives; compare quality and memory against SigLIP 2.",
+      "review_group": "siglip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-B-16-SigLIP2__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-B-16-SigLIP__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain efficient alternatives; compare quality and memory against SigLIP 2.",
+      "review_group": "siglip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 640,
+      "id": "ViT-B-16-plus-240__laion400m_e31",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 640,
+      "id": "ViT-B-16-plus-240__laion400m_e32",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "ViT-B-16__laion400m_e31",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "ViT-B-16__laion400m_e32",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "ViT-B-16__openai",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-B-32-SigLIP2-256__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "ViT-B-32__laion2b-s34b-b79k",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "ViT-B-32__laion2b_e16",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "ViT-B-32__laion400m_e31",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "ViT-B-32__laion400m_e32",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": true,
+      "embedding_dimensions": 512,
+      "id": "ViT-B-32__openai",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "ViT-H-14-378-quickgelu__dfn5b",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain as a retrieval-quality comparator; evaluate cost on the same corpus.",
+      "review_group": "dfn",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "ViT-H-14-quickgelu__dfn5b",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain as a retrieval-quality comparator; evaluate cost on the same corpus.",
+      "review_group": "dfn",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "ViT-H-14__laion2b-s32b-b79k",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-L-14-336__openai",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-L-14-quickgelu__dfn2b",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain as a retrieval-quality comparator; evaluate cost on the same corpus.",
+      "review_group": "dfn",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-L-14__laion2b-s32b-b82k",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-L-14__laion400m_e31",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-L-14__laion400m_e32",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "ViT-L-14__openai",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "ViT-L-16-SigLIP-256__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain efficient alternatives; compare quality and memory against SigLIP 2.",
+      "review_group": "siglip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "ViT-L-16-SigLIP-384__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain efficient alternatives; compare quality and memory against SigLIP 2.",
+      "review_group": "siglip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "ViT-L-16-SigLIP2-256__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "ViT-L-16-SigLIP2-384__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "ViT-L-16-SigLIP2-512__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1152,
+      "id": "ViT-SO400M-14-SigLIP-384__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain efficient alternatives; compare quality and memory against SigLIP 2.",
+      "review_group": "siglip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1152,
+      "id": "ViT-SO400M-14-SigLIP2-378__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1152,
+      "id": "ViT-SO400M-14-SigLIP2__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1152,
+      "id": "ViT-SO400M-16-SigLIP2-256__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1152,
+      "id": "ViT-SO400M-16-SigLIP2-384__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1152,
+      "id": "ViT-SO400M-16-SigLIP2-512__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "ViT-g-14__laion2b-s12b-b42k",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain compatibility and resource-constrained baselines; do not change defaults without evaluation.",
+      "review_group": "legacy_clip",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1536,
+      "id": "ViT-gopt-16-SigLIP2-256__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1536,
+      "id": "ViT-gopt-16-SigLIP2-384__webli",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Evaluate base as the balanced search upgrade; larger variants must justify their compute cost.",
+      "review_group": "siglip2",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "XLM-Roberta-Base-ViT-B-32__laion5b_s13b_b90k",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain and benchmark multilingual and mixed-language retrieval.",
+      "review_group": "multilingual_xlm_labse",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1024,
+      "id": "XLM-Roberta-Large-ViT-H-14__frozen_laion5b_s13b_b90k",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain and benchmark multilingual and mixed-language retrieval.",
+      "review_group": "multilingual_xlm_labse",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "nllb-clip-base-siglip__mrl",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain and benchmark household-language retrieval against SigLIP 2 and newer multimodal encoders.",
+      "review_group": "multilingual_nllb",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "nllb-clip-base-siglip__v1",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain and benchmark household-language retrieval against SigLIP 2 and newer multimodal encoders.",
+      "review_group": "multilingual_nllb",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1152,
+      "id": "nllb-clip-large-siglip__mrl",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain and benchmark household-language retrieval against SigLIP 2 and newer multimodal encoders.",
+      "review_group": "multilingual_nllb",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 1152,
+      "id": "nllb-clip-large-siglip__v1",
+      "registry_group": "_OPENCLIP_MODELS",
+      "review_decision": "Retain and benchmark household-language retrieval against SigLIP 2 and newer multimodal encoders.",
+      "review_group": "multilingual_nllb",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "LABSE-Vit-L-14",
+      "registry_group": "_MCLIP_MODELS",
+      "review_decision": "Retain and benchmark multilingual and mixed-language retrieval.",
+      "review_group": "multilingual_xlm_labse",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 640,
+      "id": "XLM-Roberta-Large-Vit-B-16Plus",
+      "registry_group": "_MCLIP_MODELS",
+      "review_decision": "Retain and benchmark multilingual and mixed-language retrieval.",
+      "review_group": "multilingual_xlm_labse",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 512,
+      "id": "XLM-Roberta-Large-Vit-B-32",
+      "registry_group": "_MCLIP_MODELS",
+      "review_decision": "Retain and benchmark multilingual and mixed-language retrieval.",
+      "review_group": "multilingual_xlm_labse",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "embedding_dimensions": 768,
+      "id": "XLM-Roberta-Large-Vit-L-14",
+      "registry_group": "_MCLIP_MODELS",
+      "review_decision": "Retain and benchmark multilingual and mixed-language retrieval.",
+      "review_group": "multilingual_xlm_labse",
+      "task": "image_text_search"
+    },
+    {
+      "default_in_source": false,
+      "id": "antelopev2",
+      "registry_group": "_INSIGHTFACE_MODELS",
+      "review_decision": "Preserve user-corrected identities; benchmark detector and recognition separately and check weight terms.",
+      "review_group": "insightface",
+      "task": "face_detection_and_recognition"
+    },
+    {
+      "default_in_source": true,
+      "id": "buffalo_l",
+      "registry_group": "_INSIGHTFACE_MODELS",
+      "review_decision": "Preserve user-corrected identities; benchmark detector and recognition separately and check weight terms.",
+      "review_group": "insightface",
+      "task": "face_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "buffalo_m",
+      "registry_group": "_INSIGHTFACE_MODELS",
+      "review_decision": "Preserve user-corrected identities; benchmark detector and recognition separately and check weight terms.",
+      "review_group": "insightface",
+      "task": "face_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "buffalo_s",
+      "registry_group": "_INSIGHTFACE_MODELS",
+      "review_decision": "Preserve user-corrected identities; benchmark detector and recognition separately and check weight terms.",
+      "review_group": "insightface",
+      "task": "face_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "CH__PP-OCRv5_mobile",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "CH__PP-OCRv5_server",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "EL__PP-OCRv5_mobile",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "EN__PP-OCRv5_mobile",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "ESLAV__PP-OCRv5_mobile",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "KOREAN__PP-OCRv5_mobile",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "LATIN__PP-OCRv5_mobile",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": true,
+      "id": "PP-OCRv5_mobile",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "PP-OCRv5_server",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "PP-OCRv6_medium",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Evaluate tier against latency, supported languages, preview resolution, and OCR accuracy.",
+      "review_group": "paddle_ocr_v6",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "PP-OCRv6_small",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Evaluate tier against latency, supported languages, preview resolution, and OCR accuracy.",
+      "review_group": "paddle_ocr_v6",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "PP-OCRv6_tiny",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Evaluate tier against latency, supported languages, preview resolution, and OCR accuracy.",
+      "review_group": "paddle_ocr_v6",
+      "task": "ocr_detection_and_recognition"
+    },
+    {
+      "default_in_source": false,
+      "id": "TH__PP-OCRv5_mobile",
+      "registry_group": "_PADDLE_MODELS",
+      "review_decision": "Retain language-specific coverage and compatibility; compare with PP-OCRv6 on photo text.",
+      "review_group": "paddle_ocr_v5",
+      "task": "ocr_detection_and_recognition"
+    }
+  ],
+  "counts": {
+    "face_model_packs": 4,
+    "image_text_search": 58,
+    "locally_installed_ollama_models": 6,
+    "ocr_model_ids": 13,
+    "registered_model_ids": 75
+  },
+  "external_candidate_metadata": [
+    {
+      "available_through_existing_adapter": false,
+      "fork_model_aliases": [],
+      "id": "google/gemma-4-E4B-it",
+      "installed_or_benchmarked_in_this_review": false,
+      "license": "apache-2.0",
+      "pipeline": "any-to-any",
+      "registered_in_fork": false,
+      "repository_revision": "ee0ef6023621cff504d758262d4e04895a5af4a2",
+      "source_last_modified": "2026-07-20T16:42:03.000Z",
+      "source_url": "https://huggingface.co/google/gemma-4-E4B-it"
+    },
+    {
+      "available_through_existing_adapter": false,
+      "fork_model_aliases": [],
+      "id": "google/embeddinggemma-2",
+      "installed_or_benchmarked_in_this_review": false,
+      "license": "apache-2.0",
+      "pipeline": "feature-extraction",
+      "registered_in_fork": false,
+      "repository_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+      "source_last_modified": "2026-10-06T15:29:23.000Z",
+      "source_url": "https://huggingface.co/google/embeddinggemma-2"
+    },
+    {
+      "available_through_existing_adapter": true,
+      "fork_model_aliases": ["ViT-B-16-SigLIP2__webli"],
+      "id": "google/siglip2-base-patch16-224",
+      "installed_or_benchmarked_in_this_review": false,
+      "integration_note": "The upstream checkpoint has an Immich-specific registered export alias; weights were not compared byte for byte.",
+      "license": "apache-2.0",
+      "pipeline": "zero-shot-image-classification",
+      "registered_in_fork": true,
+      "repository_revision": "75de2d55ec2d0b4efc50b3e9ad70dba96a7b2fa2",
+      "source_last_modified": "2025-02-21T04:03:35.000Z",
+      "source_url": "https://huggingface.co/google/siglip2-base-patch16-224"
+    },
+    {
+      "available_through_existing_adapter": false,
+      "fork_model_aliases": [],
+      "id": "Qwen/Qwen3-VL-Embedding-2B",
+      "installed_or_benchmarked_in_this_review": false,
+      "license": "apache-2.0",
+      "pipeline": "sentence-similarity",
+      "registered_in_fork": false,
+      "repository_revision": "9f2f7e710d6d81056aa5c0a4f04764fec6bb7bda",
+      "source_last_modified": "2026-04-16T08:54:25.000Z",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-VL-Embedding-2B"
+    },
+    {
+      "available_through_existing_adapter": false,
+      "fork_model_aliases": [],
+      "id": "Qwen/Qwen3-VL-Reranker-2B",
+      "installed_or_benchmarked_in_this_review": false,
+      "license": "apache-2.0",
+      "pipeline": "text-ranking",
+      "registered_in_fork": false,
+      "repository_revision": "4bd860ac4f15ad1897a214615cccc700f8f71818",
+      "source_last_modified": "2026-04-16T08:55:33.000Z",
+      "source_url": "https://huggingface.co/Qwen/Qwen3-VL-Reranker-2B"
+    },
+    {
+      "available_through_existing_adapter": false,
+      "fork_model_aliases": [],
+      "id": "Qwen/Qwen3.8-27B",
+      "installed_or_benchmarked_in_this_review": false,
+      "license": "apache-2.0",
+      "pipeline": "image-text-to-text",
+      "registered_in_fork": false,
+      "repository_revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+      "source_last_modified": "2026-08-14T15:00:01.000Z",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B"
+    },
+    {
+      "available_through_existing_adapter": false,
+      "fork_model_aliases": [],
+      "id": "facebook/dinov3-vitb16-pretrain-lvd1689m",
+      "installed_or_benchmarked_in_this_review": false,
+      "license": "other",
+      "pipeline": "image-feature-extraction",
+      "registered_in_fork": false,
+      "repository_revision": "5931719e67bbdb9737e363e781fb0c67687896bc",
+      "source_last_modified": "2025-08-19T09:00:44.000Z",
+      "source_url": "https://huggingface.co/facebook/dinov3-vitb16-pretrain-lvd1689m"
+    }
+  ],
+  "fork_source_commit": "08dc510d8a6445e5da4f1d7322505654ba5bd2f9",
+  "local_ollama_models": [
+    {
+      "capabilities": ["embedding"],
+      "details": {
+        "families": ["nomic-bert"],
+        "family": "nomic-bert",
+        "format": "gguf",
+        "parameter_size": "137M",
+        "parent_model": "",
+        "quantization_level": "F16"
+      },
+      "digest": "0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f",
+      "name": "nomic-embed-text:latest",
+      "size_bytes": 274302450
+    },
+    {
+      "capabilities": ["completion", "tools"],
+      "details": {
+        "families": ["gemma3"],
+        "family": "gemma3",
+        "format": "gguf",
+        "parameter_size": "268.10M",
+        "parent_model": "",
+        "quantization_level": "Q8_0"
+      },
+      "digest": "7c19b650567acfb1bee50d12bb286370e8a54d8877f6a0ecfd01f8c8fdc223bb",
+      "name": "functiongemma:latest",
+      "size_bytes": 300807157
+    },
+    {
+      "capabilities": ["completion", "vision"],
+      "details": {
+        "families": ["gemma3"],
+        "family": "gemma3",
+        "format": "gguf",
+        "parameter_size": "4.3B",
+        "parent_model": "",
+        "quantization_level": "Q4_K_M"
+      },
+      "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+      "name": "gemma3:latest",
+      "size_bytes": 3338801804
+    },
+    {
+      "capabilities": ["completion", "tools"],
+      "details": {
+        "families": ["llama"],
+        "family": "llama",
+        "format": "gguf",
+        "parameter_size": "3.2B",
+        "parent_model": "",
+        "quantization_level": "Q4_K_M"
+      },
+      "digest": "a80c4f17acd55265feec403c7aef86be0c25983ab279d83f3bcd3abbcb5b8b72",
+      "name": "llama3.2:3b",
+      "size_bytes": 2019393189
+    },
+    {
+      "capabilities": ["embedding"],
+      "details": {
+        "families": ["bert"],
+        "family": "bert",
+        "format": "gguf",
+        "parameter_size": "334M",
+        "parent_model": "",
+        "quantization_level": "F16"
+      },
+      "digest": "21ab8b9b0545e26a78164a910691440a3f1de1bfa41c3953d7451d52036c581a",
+      "name": "snowflake-arctic-embed:latest",
+      "size_bytes": 669493195
+    },
+    {
+      "capabilities": ["embedding"],
+      "details": {
+        "families": ["gemma3"],
+        "family": "gemma3",
+        "format": "gguf",
+        "parameter_size": "307.58M",
+        "parent_model": "embeddinggemma:300m-bf16",
+        "quantization_level": "BF16"
+      },
+      "digest": "85462619ee721b466c5927d109d4cb765861907d5417b9109caebc4e614679f1",
+      "name": "embeddinggemma:latest",
+      "size_bytes": 621875917
+    }
+  ],
+  "review_date": "2026-10-17",
+  "scope_note": "Registry membership is supported model selection, not an inventory of downloaded weights. Live Immich deployment settings and model cache were not inspected. Candidate revisions identify source repositories, not verified exported weight artifacts.",
+  "sources": {
+    "defaults": "server/src/dtos/config.dto.ts",
+    "local_ollama": "Local Ollama /api/tags and /api/show, read-only inventory",
+    "registry": "machine-learning/immich_ml/models/constants.py",
+    "search_dimensions": "server/src/constants.ts"
+  },
+  "upstream_source_commit": "53618ff7496ee313d1cff7b3bcdf19c82b765cdf"
+}
