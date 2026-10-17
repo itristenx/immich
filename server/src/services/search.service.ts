@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { LRUMap } from 'mnemonist';
+import { LRUMapWithDelete } from 'mnemonist';
 import { AssetMapOptions, AssetResponseDto, MapAsset, mapAsset } from 'src/dtos/asset-response.dto.js';
 import { AuthDto } from 'src/dtos/auth.dto.js';
 import { SystemConfig } from 'src/dtos/config.dto.js';
@@ -33,7 +33,7 @@ import { applyLockedVisibilityPolicy, collectFilterIds } from 'src/utils/search-
 
 @Injectable()
 export class SearchService extends BaseService {
-  private embeddingCache = new LRUMap<string, string>(100);
+  private embeddingCache = new LRUMapWithDelete<string, Promise<string>>(100);
 
   async searchPerson(auth: AuthDto, dto: SearchPeopleDto): Promise<PersonResponseDto[]> {
     const people = await this.personRepository.getByName(auth.user.id, dto.name, { withHidden: dto.withHidden });
@@ -328,16 +328,25 @@ export class SearchService extends BaseService {
     machineLearning: SystemConfig['machineLearning'],
   ): Promise<string> {
     if (dto.query) {
-      const key = machineLearning.clip.modelName + dto.query + dto.language;
+      const key = JSON.stringify([machineLearning.clip.modelName, dto.query, dto.language]);
       let embedding = this.embeddingCache.get(key);
       if (!embedding) {
-        embedding = await this.machineLearningRepository.encodeText(dto.query, {
+        embedding = this.machineLearningRepository.encodeText(dto.query, {
           modelName: machineLearning.clip.modelName,
           language: dto.language,
         });
         this.embeddingCache.set(key, embedding);
       }
-      return embedding;
+
+      try {
+        return await embedding;
+      } catch (error) {
+        // Do not retain failures or remove a newer request inserted after this one was evicted.
+        if (this.embeddingCache.peek(key) === embedding) {
+          this.embeddingCache.delete(key);
+        }
+        throw error;
+      }
     }
 
     if (dto.queryAssetId) {

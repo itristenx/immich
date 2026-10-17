@@ -375,5 +375,77 @@ describe(SearchService.name, () => {
         expect.objectContaining({ language: 'de' }),
       );
     });
+
+    it('should share text encoding between concurrent searches while retrieving each user scope separately', async () => {
+      const encoding = Promise.withResolvers<string>();
+      const auths = [AuthFactory.create(), AuthFactory.create()];
+      mocks.machineLearning.encodeText.mockReturnValue(encoding.promise);
+      const requests = auths.map((auth) => sut.searchSmart(auth, { size: 100, query: 'a dog' }));
+      await vi.advanceTimersByTimeAsync(0);
+
+      encoding.resolve('[1, 2, 3]');
+      await Promise.all(requests);
+      expect(mocks.machineLearning.encodeText).toHaveBeenCalledTimes(1);
+
+      for (const auth of auths) {
+        expect(mocks.search.searchSmart).toHaveBeenCalledWith(
+          expect.anything(),
+          expect.objectContaining({ userIds: [auth.user.id], viewingUserId: auth.user.id, embedding: '[1, 2, 3]' }),
+        );
+      }
+    });
+
+    it('should reuse a completed text encoding', async () => {
+      await sut.searchSmart(authStub.user1, { size: 100, query: 'a dog' });
+      await sut.searchSmart(authStub.user1, { size: 100, query: 'a dog' });
+
+      expect(mocks.machineLearning.encodeText).toHaveBeenCalledTimes(1);
+      expect(mocks.search.searchSmart).toHaveBeenCalledTimes(2);
+    });
+
+    it('should retry encoding after a shared request fails', async () => {
+      const encoding = Promise.withResolvers<string>();
+      mocks.machineLearning.encodeText.mockReturnValueOnce(encoding.promise);
+      const requests = Promise.allSettled([
+        sut.searchSmart(authStub.user1, { size: 100, query: 'a dog' }),
+        sut.searchSmart(AuthFactory.create(), { size: 100, query: 'a dog' }),
+      ]);
+      await vi.advanceTimersByTimeAsync(0);
+      encoding.reject(new Error('ML unavailable'));
+
+      expect(await requests).toEqual([
+        { status: 'rejected', reason: expect.any(Error) },
+        { status: 'rejected', reason: expect.any(Error) },
+      ]);
+      await sut.searchSmart(authStub.user1, { size: 100, query: 'a dog' });
+
+      expect(mocks.machineLearning.encodeText).toHaveBeenCalledTimes(2);
+    });
+
+    it('should distinguish query and language combinations with the same concatenation', async () => {
+      await sut.searchSmart(authStub.user1, { size: 100, query: 'a dogfr', language: 'en' });
+      await sut.searchSmart(authStub.user1, { size: 100, query: 'a dog', language: 'fren' });
+
+      expect(mocks.machineLearning.encodeText).toHaveBeenCalledTimes(2);
+    });
+
+    it('should distinguish text encodings from different models', async () => {
+      await sut.searchSmart(authStub.user1, { size: 100, query: 'a dog' });
+      mocks.systemMetadata.get.mockResolvedValue({
+        machineLearning: { clip: { modelName: 'ViT-B-16-SigLIP__webli' } },
+      });
+      await sut.searchSmart(authStub.user1, { size: 100, query: 'a dog' });
+
+      expect(mocks.machineLearning.encodeText).toHaveBeenCalledTimes(2);
+    });
+
+    it('should evict old text encodings when the cache fills', async () => {
+      for (let index = 0; index <= 100; index++) {
+        await sut.searchSmart(authStub.user1, { size: 100, query: `query ${index}` });
+      }
+      await sut.searchSmart(authStub.user1, { size: 100, query: 'query 0' });
+
+      expect(mocks.machineLearning.encodeText).toHaveBeenCalledTimes(102);
+    });
   });
 });
